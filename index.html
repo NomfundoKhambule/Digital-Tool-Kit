@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Smart Healthcare Toolkit</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    .sidebar { min-width: 230px; max-width: 260px; }
+    .glow { box-shadow: 0 6px 18px rgba(14, 165, 233, 0.15); }
+    h2 { color: #0ea5e9; }
+    section { animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .content-section { margin-bottom: 2rem; }
+    .content-section h3 { color: #0ea5e9; font-weight: 600; margin-bottom: 0.5rem; }
+    .content-section ul { list-style-type: disc; margin-left: 1.5rem; }
+    .content-section li { margin-bottom: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #e2e8f0; padding: 0.75rem; text-align: left; }
+    th { background-color: #f1f5f9; font-weight: 600; }
+    tr:nth-child(even) { background-color: #f8fafc; }
+    .scenario-box { background-color: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 1rem; margin: 1rem 0; }
+    .tip-box { background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0; }
+    .chart-container { position: relative; height: 300px; width: 100%; }
+  </style>
+</head>
+<body class="text-gray-800">
+<div class="min-h-screen flex">
+<!-- SIDEBAR -->
+<aside class="sidebar bg-white p-4 border-r border-gray-200 shadow-md">
+<div class="mb-6">
+<h1 class="text-xl font-bold text-sky-600">Smart Healthcare</h1>
+<p class="text-sm text-gray-500">Toolkit</p>
+</div>
+<nav class="space-y-2 text-sm">
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('home')">🏠 Home</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('patients')">📊 Patient Data Visualisation</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('infoquality')">📝 Information Quality</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('ethics')">🔒 Data Ethics and Privacy</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('ai')">🤖 AI in Healthcare</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('integration')">🔗 Integration</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('customize')">⚙️ Customisation</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('resources')">📚 Resources</button>
+  <button class="w-full text-left px-3 py-2 rounded hover:bg-sky-100" onclick="showSection('references')">📖 References</button>
+</nav>
+
+</aside>
+<!-- MAIN -->
+<main class="flex-1 p-6 space-y-6">
+<!-- HOME -->
+<section class="bg-gradient-to-br from-white via-slate-100 to-slate-200 p-10 rounded-xl shadow-xl transition-all duration-500 ease-in-out" id="home">
+  <h2 class="text-4xl font-bold text-sky-600 mb-6 border-b-4 border-sky-300 inline-block">
+    Welcome to Your Digital Healthcare Toolkit
+  </h2>
+
+  <div class="mb-10">
+    <p class="text-lg text-slate-700 mb-3 font-medium">Feeling overwhelmed by healthcare tech? You're not alone.</p>
+    <p class="text-slate-700 mb-3 leading-relaxed">
+      This toolkit is your shortcut to clarity. Whether you're juggling patient records, navigating dashboards, or wondering about data privacy — we've got you covered in plain, everyday language.
+    </p>
+    <img src="https://miro.medium.com/v2/1*UDRMu3eFALHUyUKf1ZsdGw.png"
+         alt="Smart Healthcare Toolkit illustration"
+         class="mt-6 rounded-xl shadow-lg mx-auto transform hover:-translate-y-1 hover:scale-105 transition duration-300"
+         style="max-width: 340px; height: auto;">
+  </div>
+
+  <div class="mb-10">
+    <h3 class="text-2xl font-semibold text-sky-600 mb-4 border-b border-sky-200 pb-1">What’s Inside</h3>
+    <ul class="ml-6 space-y-3 text-slate-700 list-disc">
+      <li>Bite-sized explanations of key healthcare tech topics</li>
+      <li>Visuals and real-world examples to make it stick</li>
+      <li>Tips for keeping patient data safe and systems secure</li>
+      <li>Quick guides to the tools hospitals use every day</li>
+      <li>Handy resources you can revisit anytime</li>
+    </ul>
+  </div>
+
+  <div class="mb-10">
+    <h3 class="text-2xl font-semibold text-sky-600 mb-4 border-b border-sky-200 pb-1">Who’s It For?</h3>
+    <p class="text-slate-700 mb-2">This toolkit is built for:</p>
+    <ul class="ml-6 space-y-3 text-slate-700 list-disc">
+      <li>Hospital managers</li>
+      <li>Nurses and clinical staff</li>
+      <li>Admin teams and IT support</li>
+      <li>Curious minds exploring healthcare innovation</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-2xl font-semibold text-sky-600 mb-4 border-b border-sky-200 pb-1">Ready to Dive In?</h3>
+    <p class="text-slate-700 leading-relaxed">
+      Use the menu to explore topics, skim summaries, and grab the resources you need.
+      Everything’s designed to be simple, relevant, and ready to use - no jargon, no fluff.
+    </p>
+  </div>
+</section>
+
+
+
+<!-- PATIENT DATA VISUALISATION -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="patients">
+<h2 class="text-2xl font-semibold text-sky-600 mb-4">Patient Data Visualisation</h2>
+<img src="https://tateeda.com/wp-content/uploads/2022/09/img-3-7-1024x614.png"
+     alt="Patient Data Dashboard"
+     style="display: block; margin: 0 auto 1rem auto; width: 100%; max-width: 1000px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: transparent;">
+<div class="content-section">
+  <p>Dashboards display real-time patient data like admissions, treatments, and outcomes.</p>
+</div>
+
+
+
+
+<div class="content-section">
+<h3>What It Means in IT Systems</h3>
+<p>Dashboards are part of hospital software platforms. They display real-time patient data like who's admitted, what treatments are underway, and how outcomes are tracking.</p>
+</div>
+
+<div class="content-section">
+<h3>Why It Matters</h3>
+<p>Dashboards help staff make fast, informed decisions without searching through multiple screens. They improve visibility and reduce delays (Ambrose, 2023).</p>
+</div>
+
+<div class="content-section">
+<h3>Practical Examples</h3>
+<ul>
+<li>A nurse logs into the ward dashboard to see which patients need medication</li>
+<li>A doctor checks the treatment dashboard for flagged lab results</li>
+<li>A manager views weekly discharge trends on the outcomes dashboard</li>
+</ul>
+</div>
+
+<div class="content-section">
+<h3>Good Practice</h3>
+<ul>
+<li>Check your dashboard regularly during your shift</li>
+<li>Understand what each section shows and ask if unsure</li>
+<li>Don't ignore system alerts or flags</li>
+<li>Use dashboards to guide your priorities</li>
+<li>Report if data isn't updating or looks incorrect</li>
+</ul>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div class="bg-gray-50 p-4 rounded shadow">
+<h3 class="font-semibold mb-2">Admissions by Day (Last 30 Days)</h3>
+<div class="chart-container">
+<canvas id="admissionsChart"></canvas>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded shadow">
+<h3 class="font-semibold mb-2">Treatment Outcomes by Department</h3>
+<div class="chart-container">
+<canvas id="outcomesChart"></canvas>
+</div>
+</div>
+</div>
+</section>
+
+<!-- INFORMATION QUALITY -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="infoquality">
+<h2 class="text-2xl font-semibold text-sky-600 mb-4">Information Quality in Healthcare</h2>
+<img src="https://www.effectivesoft.com/wp/wp-content/uploads/2023/09/data-quality-in-healthcare-scaled.jpg"
+     alt="Information Quality in Healthcare"
+     style="display: block; margin: 0 auto 1rem auto; width: 100%; max-width: 1000px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: transparent;">
+<div class="content-section">
+  <p>Hospital IT systems rely on staff to enter accurate, complete, and timely data. Poor data quality can lead to wrong treatments, missed diagnoses, or billing errors.</p>
+</div>
+
+
+
+
+
+<div class="content-section">
+<h3>What It Means in IT Systems</h3>
+<p>Hospital IT systems store patient records electronically. These systems rely on staff to enter accurate, complete, and timely data whether it's vitals, diagnoses, or discharge notes.</p>
+</div>
+
+<div class="content-section">
+<h3>Why It Matters</h3>
+<p>Poor data quality can lead to wrong treatments, missed diagnoses, or billing errors. IT systems can only support care if the information inside them is reliable (National Department of Health, 2020).</p>
+</div>
+
+<div class="content-section">
+<h3>Practical Examples</h3>
+<ul>
+<li>A missing allergy note in the EHR leads to a medication error</li>
+<li>A delayed lab result affects discharge planning</li>
+<li>Incomplete history causes confusion during handover</li>
+</ul>
+</div>
+
+<div class="content-section">
+<h3>Good Practice</h3>
+<ul>
+<li>Update records immediately after patient contact</li>
+<li>Double-check entries before saving</li>
+<li>Avoid leaving fields blank unless necessary</li>
+<li>Use approved formats and abbreviations</li>
+<li>Report system glitches or missing data</li>
+</ul>
+</div>
+</section>
+
+<!-- DATA ETHICS -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="ethics">
+<h2 class="text-2xl font-semibold text-sky-600 mb-4">Data Ethics and Privacy</h2>
+<div style="display: flex; justify-content: center; background: transparent; margin-bottom: 1rem;">
+  <img src="https://studentprivacycompass.org/wp-content/uploads/2021/06/FPF_DataPrivacyCurricula-final-1.png" alt="Data Ethics and Privacy in Healthcare" style="width: 100%; max-width: 1000px; height: auto; object-fit: contain; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+</div>
+<div class="content-section">
+  <p>In healthcare, patient information is deeply personal. From medical histories to test results, this data tells someone's story. Data ethics and privacy are about treating that story with care and making sure it's protected.</p>
+</div>
+
+
+
+
+
+<div class="content-section">
+<h3>What Is Data Ethics and Privacy?</h3>
+<p>Data ethics and privacy is about how we handle patient information, safely, fairly, and respectfully. This includes:</p>
+<ul>
+<li>What information we collect</li>
+<li>How we store and protect it</li>
+<li>Who we share it with</li>
+<li>How we use it to make decisions</li>
+</ul>
+<p>It's not just about following rules. It's about protecting people (Pretorius, 2023)</p>
+</div>
+
+<div class="content-section">
+<h3>Why It Matters in Everyday Work</h3>
+<p>Every time you enter a note, schedule an appointment, or access a patient file, you're part of the privacy chain. That means your actions directly affect how safe and respected a patient feels.</p>
+<p>Poor data practices can:</p>
+<ul>
+<li>Harm the patient emotionally or physically</li>
+<li>Damage trust between staff and patients</li>
+<li>Lead to legal consequences for the hospital</li>
+<li>Affect the quality of care</li>
+</ul>
+<p>Whether you're a nurse, an administrator, or part of the IT team, you interact with patient data every day. And have a role to play in protecting it (Discovery Health,2023).</p>
+</div>
+
+<div class="content-section">
+<h3>Key Concepts Explained Simply</h3>
+
+<h4>Confidentiality</h4>
+<p>Digital systems store patient data - who sees what depends on how access is set up.</p>
+<p>What this means for you:</p>
+<ul>
+<li>You'll only be able to access records relevant to your role</li>
+<li>If you see something you shouldn't, report it don't ignore it</li>
+<li>Avoid printing or downloading patient info unless necessary</li>
+</ul>
+
+<h4>Consent</h4>
+<p>Most hospital systems include digital consent forms or flags. These tell you what the patient has agreed to.</p>
+<p>What this means for you:</p>
+<ul>
+<li>Always check the system for consent status before sharing data</li>
+<li>Don't assume verbal consent is enough look for documentation</li>
+<li>If consent is missing or unclear, ask your supervisor before proceeding</li>
+</ul>
+
+<h4>Transparency</h4>
+<p>Patients may ask how their data is used in digital systems. You don't need to explain the tech but you should know the basics.</p>
+<p>What this means for you:</p>
+<ul>
+<li>Be ready to explain what info is collected and why</li>
+<li>Know which systems store patient data (e.g. EHR, scheduling tools)</li>
+<li>Use plain language and avoid technical terms like "cloud" or "encryption"</li>
+</ul>
+
+<h4>Security</h4>
+<p>IT teams protect systems, but your actions matter too.</p>
+<p>What this means for you:</p>
+<ul>
+<li>Use your own login and never share credentials</li>
+<li>Log out or lock your screen when stepping away</li>
+<li>Report any system glitches, strange access, or lost devices immediately</li>
+</ul>
+
+<h4>Fairness</h4>
+<p>Digital tools like AI or automated dashboards can unintentionally exclude certain patients.</p>
+<p>What this means for you:</p>
+<ul>
+<li>Be aware of how systems make decisions (e.g. risk scores, discharge planning)</li>
+<li>If something feels unfair or biased, raise it with your team</li>
+<li>Remember: tech supports care it doesn't replace your judgment</li>
+</ul>
+</div>
+
+<div class="content-section">
+<h3>Practical Examples for Staff</h3>
+
+<div class="scenario-box">
+<h4>Scenario 1: A Nurse on the Ward</h4>
+<p>You're checking a patient's file to update their medication. You notice another patient's record is open on the screen.</p>
+<p><strong>What to do:</strong></p>
+<ul>
+<li>Close the incorrect file immediately</li>
+<li>Report the error if it wasn't caused by you</li>
+<li>Make sure your device is locked when unattended</li>
+</ul>
+</div>
+
+<div class="scenario-box">
+<h4>Scenario 2: An Admin Assistant</h4>
+<p>You're asked to send a patient's discharge summary to a specialist.</p>
+<p><strong>What to check:</strong></p>
+<ul>
+<li>Has the patient given written consent?</li>
+<li>Are you sending it through a secure channel (not WhatsApp or personal email)?</li>
+<li>Are you only sharing what's relevant?</li>
+</ul>
+</div>
+
+<div class="scenario-box">
+<h4>Scenario 3: An IT Technician</h4>
+<p>You're setting up access for a new staff member.</p>
+<p><strong>What to consider:</strong></p>
+<ul>
+<li>What level of access do they need?</li>
+<li>Can they view sensitive data they shouldn't?</li>
+<li>Is their login protected with two-factor authentication?</li>
+</ul>
+</div>
+</div>
+
+<div class="content-section">
+<h3>What Good Practice Looks Like</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Good Practice Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nurse</td>
+<td>Logs out of system before leaving the station</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Uses hospital-approved email to send patient info</td>
+</tr>
+<tr>
+<td>IT Technician</td>
+<td>Sets up role-based access controls</td>
+</tr>
+<tr>
+<td>Doctor</td>
+<td>Explains data use clearly during consent discussions</td>
+</tr>
+<tr>
+<td>Receptionist</td>
+<td>Keeps printed records locked away when not in use</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="content-section">
+<h3>For IT and Admin Teams</h3>
+<p>If you help build or manage hospital systems, you're in a key position to support ethical data use. That means:</p>
+<ul>
+<li>Setting up access controls so staff only see what they need</li>
+<li>Using audit logs to track who views patient info</li>
+<li>Encrypting and backing up data to prevent leaks</li>
+<li>Including clear consent options in forms and systems</li>
+<li>Checking that any AI tools are fair and inclusive</li>
+</ul>
+<p>These aren't just technical tasks. They're ethical safeguards (Ambrose, 2023).</p>
+</div>
+
+<div class="content-section">
+<h3>A Real-Life Example</h3>
+<p>Let's say your hospital uses software to predict which patients might need extra care after discharge. If that software was built using data from only one type of patient group, it might miss others like rural patients or older adults. That's not just a tech issue it's an ethical one.</p>
+<p>Here's what to ask:</p>
+<ul>
+<li>Is the data fair and inclusive?</li>
+<li>Did patients agree to be part of this system?</li>
+<li>Are staff trained to understand how it works?</li>
+</ul>
+</div>
+
+<div class="tip-box">
+<h3>Tips to Remember</h3>
+<ul>
+<li>Always ask: "Do I need this data to do my job?"</li>
+<li>Never assume consent - check it</li>
+<li>Use secure systems and report anything unusual</li>
+<li>Respect patient privacy like you'd want your own respected</li>
+<li>If unsure, ask your supervisor or IT team</li>
+</ul>
+</div>
+</section>
+
+<!-- AI -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="ai">
+<h2 class="text-2xl font-semibold text-sky-600 mb-4">AI and Decision-Making in Healthcare</h2>
+<img src="https://cdn.prod.website-files.com/650c1bee516c4e723b11b29a/651de08e2abe644937d1656b_9dcf89_4ce40fd6c35d4a13910ba04a74748acf~mv2.webp"
+     alt="AI and Decision-Making in Healthcare"
+     style="display: block; margin: 0 auto 1rem auto; width: 100%; max-width: 1000px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: transparent;">
+<div class="content-section">
+  <p>AI tools analyse patient data to flag risks, suggest diagnoses, or automate tasks. They support but do not replace clinical decisions.</p>
+</div>
+
+
+<div class="content-section">
+<h3>What It Means in IT Systems</h3>
+<p>AI tools are built into hospital platforms. They analyse patient data to flag risks, suggest diagnoses, or automate routine tasks. These tools support but do not replace clinical decisions.</p>
+</div>
+
+<div class="content-section">
+<h3>Why It Matters</h3>
+<p>AI can improve care and reduce workload, but it must be used responsibly. Staff should understand how the system works and when to override it (Mahlangu, 2024).</p>
+</div>
+
+<div class="content-section">
+<h3>Practical Examples</h3>
+<ul>
+<li>A triage system flags a patient as high-risk based on symptoms</li>
+<li>A discharge tool suggests next steps based on diagnosis</li>
+<li>A chatbot answers patient questions about appointments</li>
+</ul>
+</div>
+
+<div class="content-section">
+<h3>Good Practice</h3>
+<ul>
+<li>Know what the tool is doing and ask if unsure</li>
+<li>Don't rely on AI alone also use your judgment</li>
+<li>Watch for patterns that seem biased or inaccurate</li>
+<li>Raise concerns if a tool misses key patient needs</li>
+<li>Document decisions made with AI support</li>
+</ul>
+</div>
+</section>
+
+<!-- INTEGRATION -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="integration">
+<h2 class="text-2xl font-semibold text-sky-600 mb-4"">Integration of Healthcare Information Systems</h2>
+<img src="https://cdn-lipbd.nitrocdn.com/NmtxoNywbwrhgCusRjwzXqAEjXRnHzOa/assets/images/optimized/rev-1045a4b/www.osplabs.com/wp-content/uploads/2021/12/Components-of-a-Hospital-Information-System.jpg"
+     alt="Integration of Healthcare Information Systems"
+     style="display: block; margin: 0 auto 1rem auto; width: 100%; max-width: 1000px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: transparent;">
+<div class="content-section">
+  <p>Integration links EHRs, pharmacy software, and billing platforms. This reduces duplication, speeds up care, and improves accuracy.</p>
+</div>
+
+
+<div class="content-section">
+<h3>What It Means in IT Systems</h3>
+<p>Integration means different hospital systems like EHRs, pharmacy software, and billing platforms are connected. This allows data to flow smoothly between departments.</p>
+</div>
+
+<div class="content-section">
+<h3>Why It Matters</h3>
+<p>Integrated systems reduce duplication, speed up care, and improve accuracy. Staff can access complete patient info without switching between platforms (Ambrose, 2023).</p>
+</div>
+
+<div class="content-section">
+<h3>Practical Examples</h3>
+<ul>
+<li>A doctor prescribes medication, and it's sent directly to pharmacy</li>
+<li>A patient's lab result updates their billing and discharge plan</li>
+<li>A nurse sees allergy info from a previous hospital visit</li>
+</ul>
+</div>
+
+<div class="content-section">
+<h3>Good Practice</h3>
+<ul>
+<li>Use the correct system for each task</li>
+<li>Don't duplicate entries across platforms</li>
+<li>Report if systems aren't syncing properly</li>
+<li>Ask for training if unsure how systems connect</li>
+<li>Follow hospital protocols for integrated workflows</li>
+</ul>
+</div>
+</section>
+
+<!-- CUSTOMISATION -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="customize">
+<h2 class="text-2xl font-semibold text-sky-600 mb-4">Customising Healthcare Systems</h2>
+<img src="https://concisesoftware.com/wp-content/uploads/What-are-the-risks-in-digital-healthcare-small.jpg"
+     alt="Customising Healthcare Systems"
+     style="display: block; margin: 0 auto 1rem auto; width: 100%; max-width: 1000px; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: transparent;">
+<div class="content-section">
+  <p>Customisation allows hospitals to adjust digital tools to match local needs. This improves workflows and patient care.</p>
+</div>
+
+
+<div class="content-section">
+<h3>What It Means in IT Systems</h3>
+<p>Customisation allows hospitals to adjust digital tools like changing dashboard layouts, setting alerts, or streamlining workflows to match local needs.</p>
+</div>
+
+<div class="content-section">
+<h3>Why It Matters</h3>
+<p>Every hospital is different. Customised systems help staff work faster, reduce errors, and improve patient care (National Department of Health, 2020).</p>
+</div>
+
+<div class="content-section">
+<h3>Practical Examples</h3>
+<ul>
+<li>A maternity ward dashboard shows labour stages and delivery alerts</li>
+<li>A rural clinic sets up alerts for stockouts in pharmacy</li>
+<li>A trauma unit customises triage categories for emergencies</li>
+</ul>
+</div>
+
+<div class="content-section">
+<h3>Good Practice</h3>
+<ul>
+<li>Share feedback with IT or system managers</li>
+<li>Ask for changes that improve your workflow</li>
+<li>Don't ignore alerts and report if they're not useful</li>
+<li>Help test new layouts or features</li>
+<li>Support staff training when systems are updated</li>
+</ul>
+</div>
+</section>
+
+<!-- RESOURCES -->
+<section class="hidden p-6 rounded-xl bg-gradient-to-br from-white via-slate-100 to-slate-200" id="resources">
+  <h2 class="text-2xl font-semibold text-sky-600 mb-4"">Resources</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Privacy in Healthcare -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">🔐</span> Privacy in Healthcare
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Explore legal and ethical frameworks for protecting patient data in clinical environments.</p>
+      <a href="https://www.michalsons.com/blog/privacy-in-healthcare/8637" class="text-blue-600 hover:underline text-sm">Open Resource →</a>
+    </div>
+
+    <!-- National Privacy & Security Policy -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">📜</span> National Privacy & Security Policy
+      </div>
+      <p class="text-slate-700 text-sm mb-2">South Africa’s official policy outlining standards for privacy and data protection in healthcare systems.</p>
+      <a href="https://knowledgehub.health.gov.za/content/privacy-and-security-policy" class="text-blue-600 hover:underline text-sm">Open Resource →</a>
+    </div>
+
+    <!-- Privacy & Data Protection – ITLawCo -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">⚖️</span> Privacy & Data Protection – ITLawCo
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Legal insights into how healthcare providers can comply with data protection laws in South Africa.</p>
+      <a href="https://itlawco.com/privacy-and-data-protection-in-healthcare-in-south-africa/" class="text-blue-600 hover:underline text-sm">Open Resource →</a>
+    </div>
+
+    <!-- CSIR Research on Privacy -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">🔍</span> CSIR Research on Privacy
+      </div>
+      <p class="text-slate-700 text-sm mb-2">A technical report from CSIR exploring privacy challenges and solutions in digital health systems.</p>
+      <a href="https://researchspace.csir.co.za/server/api/core/bitstreams/25e63977-894a-4a66-ab75-25ccb5fe5392/content" class="text-blue-600 hover:underline text-sm">Open Resource →</a>
+    </div>
+
+    <!-- Data Visualization in Healthcare -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">📊</span> Data Visualization in Healthcare
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Learn how dashboards and visual tools help track patient outcomes and improve decision-making.</p>
+      <a href="https://www.youtube.com/watch?v=ILpuw_4QJcU" class="text-blue-600 hover:underline text-sm">Watch Video →</a>
+    </div>
+
+    <!-- Data Quality in Health and Social Care -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">📈</span> Data Quality in Health and Social Care
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Understand why accurate, timely data is essential for safe treatment and effective policy-making.</p>
+      <a href="https://www.youtube.com/watch?v=QqdF_AI7ivE" class="text-blue-600 hover:underline text-sm">Watch Video →</a>
+    </div>
+
+    <!-- AI in Healthcare Decision-Making -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">🤖</span> AI in Healthcare Decision-Making
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Explore how AI supports clinical decisions by analyzing patient data and flagging potential risks.</p>
+      <a href="https://www.youtube.com/watch?v=4ERVqN0dxrY" class="text-blue-600 hover:underline text-sm">Watch Video →</a>
+    </div>
+
+    <!-- Custom Healthcare Software -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">🛠️</span> Custom Healthcare Software
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Discover how tailored platforms and AI-powered tools improve workflows and patient care delivery.</p>
+      <a href="https://www.youtube.com/watch?v=f5ekDKcDQ2c" class="text-blue-600 hover:underline text-sm">Watch Video →</a>
+    </div>
+
+    <!-- Health IT Basics -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">🔗</span> Health IT Basics
+      </div>
+      <p class="text-slate-700 text-sm mb-2">A beginner-friendly overview of how health information technology supports chronic care and equity.</p>
+      <a href="https://www.youtube.com/watch?v=qpH5jMft2kE" class="text-blue-600 hover:underline text-sm">Watch Video →</a>
+    </div>
+
+    <!-- HIS Architecture & Integration -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg shadow hover:shadow-md transition">
+      <div class="flex items-center mb-2 text-blue-700 font-semibold">
+        <span class="text-2xl mr-2">🧩</span> HIS Architecture & Integration
+      </div>
+      <p class="text-slate-700 text-sm mb-2">Dive into how healthcare systems connect EHRs, billing, and pharmacy tools for seamless care.</p>
+      <a href="https://www.youtube.com/watch?v=CdXXCbMo1gs" class="text-blue-600 hover:underline text-sm">Watch Video →</a>
+    </div>
+
+  </div>
+  <div class="mt-12">
+  <h3 class="text-2xl font-bold text-slate-800 mb-4">🧠 Test Your Knowledge</h3>
+  <form id="quizForm" class="space-y-6">
+    <!-- Questions will be injected here -->
+    <div id="questions"></div>
+    <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Submit Quiz</button>
+  </form>
+  <div id="result" class="mt-6 text-lg font-semibold text-slate-800"></div>
+</div>
+
+</section><!-- REFERENCES -->
+<section class="hidden bg-white p-6 rounded shadow glow" id="references">
+  <h2 class="text-2xl font-semibold text-sky-600 mb-4">References</h2>
+  <ol class="list-decimal ml-6 space-y-4 text-slate-700 text-sm leading-relaxed">
+    <li>
+      Altron HealthTech (2023) <em>A simplified guide to POPIA for medical practices</em>. Available at:
+      <a href="https://healthtech.altron.com/press-releases/a-simplified-guide-to-popia-for-medical-practices" class="text-sky-600 hover:underline">healthtech.altron.com</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      Ambrose, B. (2023) <em>Privacy and data protection in healthcare in South Africa</em>. ITLawCo. Available at:
+      <a href="https://itlawco.com/privacy-and-data-protection-in-healthcare-in-south-africa" class="text-sky-600 hover:underline">itlawco.com</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      Discovery Health (2023) <em>POPIA FAQ for healthcare professionals</em>. Available at:
+      <a href="https://www.discovery.co.za/assets/discoverycoza/health-professionals/propbm-communiques/popia-faq-for-healthcare-professionals.pdf" class="text-sky-600 hover:underline">discovery.co.za</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      Mahlangu, T. (2024) <em>Ethical considerations in healthcare IT</em>. <strong>World Journal of Advanced Research and Reviews</strong>, 22(3), pp. 45–52. Available at:
+      <a href="https://wjarr.com/sites/default/files/WJARR-2024-0593.pdf" class="text-sky-600 hover:underline">wjarr.com</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      National Department of Health (2020) <em>National digital health strategy for South Africa 2019–2024</em>. Available at:
+      <a href="https://www.health.gov.za/wp-content/uploads/2020/11/national-digital-strategy-for-south-africa-2019-2024-b.pdf" class="text-sky-600 hover:underline">health.gov.za</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      National Department of Health (2025) <em>The Emerging South African National Health Information System</em>. Available at:
+      <a href="https://www.health.gov.za/wp-content/uploads/2025/07/Web-Version-The-Emerging-South-African-Digital-Health-System.pdf" class="text-sky-600 hover:underline">health.gov.za</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      Pretorius, A. (2023) <em>A simplified guide to POPIA for medical practices</em>. Altron HealthTech. Available at:
+      <a href="https://healthtech.altron.com/press-releases/a-simplified-guide-to-popia-for-medical-practices" class="text-sky-600 hover:underline">healthtech.altron.com</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      Republic of South Africa (2023) <em>Protection of Personal Information Act: Regulations on processing health data</em>. Available at:
+      <a href="https://www.gov.za/documents/notices/protection-personal-information-act-regulations-processing-data-subject%E2%80%99s-health" class="text-sky-600 hover:underline">gov.za</a> (Accessed: 27 September 2025).
+    </li>
+    <li>
+      SGS (2023) <em>Empowering safety experts with interactive patient profile dashboards</em>. Available at:
+      <a href="https://www.sgs.com/en-za/showcases/empowering-safety-experts-with-interactive-patient-profile-dashboards" class="text-sky-600 hover:underline">sgs.com</a> (Accessed: 27 September 2025).
+    </li>
+  </ol>
+</section>
+
+
+
+
+
+    <!-- Health IT Basics -->
+
+</main>
+</div>
+<script>
+    // Variables to store chart instances
+    let admissionsChart = null;
+    let outcomesChart = null;
+    
+    function showSection(id) {
+      const sections = ['home','patients','infoquality','ethics','ai','integration','customize','resources','references'];
+      sections.forEach(s => {
+        const el = document.getElementById(s);
+        if (!el) return;
+        el.classList.toggle('hidden', s !== id);
+      });
+      
+      // If showing the patients section, create the charts
+      if (id === 'patients') {
+        // Small delay to ensure the section is visible before creating charts
+        setTimeout(createCharts, 100);
+      }
+    }
+
+    function randomInt(max=40,min=5){return Math.floor(Math.random()*(max-min+1))+min;}
+    
+    function createCharts() {
+      // Destroy existing charts if they exist
+      if (admissionsChart) {
+        admissionsChart.destroy();
+      }
+      if (outcomesChart) {
+        outcomesChart.destroy();
+      }
+      
+      const days = Array.from({length:30}).map((_,i)=> {
+        const d = new Date();
+        d.setDate(d.getDate() - (29 - i));
+        return (d.getMonth()+1) + '/' + d.getDate();
+      });
+      const admissionsData = days.map(()=> randomInt(30,5));
+      const ctx1 = document.getElementById('admissionsChart')?.getContext('2d');
+      if (ctx1) {
+        admissionsChart = new Chart(ctx1, {
+          type: 'line',
+          data: { 
+            labels: days, 
+            datasets: [{ 
+              label: 'Admissions', 
+              data: admissionsData, 
+              fill: true, 
+              borderWidth: 2, 
+              tension: 0.3, 
+              backgroundColor: 'rgba(14,165,233,0.1)', 
+              borderColor: 'rgba(14,165,233,1)' 
+            }] 
+          },
+          options: { 
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }, 
+            scales: { 
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Number of Admissions'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Date'
+                }
+              }
+            } 
+          }
+        });
+      }
+      
+      const departments = ['Cardiology','Oncology','Emergency','Pediatrics','Orthopedics'];
+      const outcomes = departments.map(()=> randomInt(85,60));
+      const ctx2 = document.getElementById('outcomesChart')?.getContext('2d');
+      if (ctx2) {
+        outcomesChart = new Chart(ctx2, {
+          type: 'bar',
+          data: { 
+            labels: departments, 
+            datasets: [{ 
+              label: 'Success rate (%)', 
+              data: outcomes, 
+              backgroundColor: 'rgba(14,165,233,0.6)' 
+            }] 
+          },
+          options: { 
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }, 
+            scales: { 
+              y: {
+                beginAtZero: true,
+                max: 100,
+                title: {
+                  display: true,
+                  text: 'Success Rate (%)'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Department'
+                }
+              }
+            } 
+          }
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('home');
+      // Don't create charts immediately - wait until user navigates to patients section
+    });
+  </script>
+  <script>
+const quizData = [
+  {
+    question: "What is the primary goal of data ethics and privacy in healthcare?",
+    options: [
+      "To follow hospital rules",
+      "To improve billing efficiency",
+      "To reduce paperwork",
+      "To protect patient stories and ensure respectful data use"
+    ],
+    answer: 3
+  },
+  {
+    question: "Which of the following is a good practice for maintaining confidentiality?",
+    options: [
+      "Accessing any patient file for learning purposes",
+      "Printing patient records for convenience",
+      "Sharing login credentials with trusted coworkers",
+      "Reporting accidental access to unrelated patient data"
+    ],
+    answer: 3
+  },
+  {
+    question: "Before sharing a patient’s discharge summary, what should you check?",
+    options: [
+      "If the specialist requested it",
+      "If the patient has been discharged",
+      "If the patient verbally agreed",
+      "If written consent exists and the channel is secure"
+    ],
+    answer: 3
+  },
+  {
+    question: "What does 'transparency' mean in digital healthcare systems?",
+    options: [
+      "Avoiding technical terms when discussing data use",
+      "Explaining encryption methods to patients",
+      "Using cloud storage for patient records",
+      "Letting patients access all hospital systems"
+    ],
+    answer: 0
+  },
+  {
+    question: "Which action supports fairness in AI-powered healthcare tools?",
+    options: [
+      "Letting tech replace clinical judgment",
+      "Raising concerns about unfair or biased system decisions",
+      "Assuming all patients are treated equally",
+      "Ignoring biased results if they’re automated"
+    ],
+    answer: 1
+  }
+];
+
+const questionsContainer = document.getElementById("questions");
+
+quizData.forEach((q, index) => {
+  const questionBlock = document.createElement("div");
+
+  const questionTitle = document.createElement("p");
+  questionTitle.textContent = `Q${index + 1}: ${q.question}`;
+  questionTitle.className = "font-semibold text-slate-700 mb-2";
+  questionBlock.appendChild(questionTitle);
+
+  q.options.forEach((option, i) => {
+    const label = document.createElement("label");
+    label.className = "block mb-1 text-slate-600";
+
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = `question${index}`;
+    input.value = i;
+    input.className = "mr-2";
+
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(option));
+    questionBlock.appendChild(label);
+  });
+
+  questionsContainer.appendChild(questionBlock);
+});
+
+document.getElementById("quizForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  let score = 0;
+  let feedback = "";
+
+  quizData.forEach((q, index) => {
+    const selected = document.querySelector(`input[name="question${index}"]:checked`);
+    if (selected) {
+      const answerIndex = parseInt(selected.value);
+      if (answerIndex === q.answer) {
+        score++;
+        feedback += `✅ Q${index + 1}: Correct<br>`;
+      } else {
+        feedback += `❌ Q${index + 1}: Incorrect. Correct answer: ${q.options[q.answer]}<br>`;
+      }
+    } else {
+      feedback += `⚠️ Q${index + 1}: No answer selected<br>`;
+    }
+  });
+
+  feedback += `<br><strong>Your Score: ${score} / ${quizData.length}</strong>`;
+  document.getElementById("result").innerHTML = feedback;
+});
+</script>
+
+</body>
+</html>
